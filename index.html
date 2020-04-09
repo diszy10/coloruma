@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coloruma</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css" />
+  <script src="js/app.js" type="module" defer></script>
+</head>
+
+<body>
+  <div class="toolbox left">
+    <div class="group commands">
+      <div class="item" data-command="undo" title="Undo">
+        <img src="assets/undo.png" alt="undo" />
+      </div>
+      <div class="item" data-command="download" title="Download">
+        <img src="assets/download.png" alt="download" />
+      </div>
+      <div class="item" data-command="upload" title="Upload">
+        <div class="custom-file-input">
+          <img src="assets/upload.png" alt="upload" />
+          <input type="file" id="input" />
+        </div>
+      </div>
+    </div>
+    <div class="group tools">
+      <div class="item" data-tool="pencil" title="Pencil">
+        <img src="assets/pencil.png" alt="pencil" />
+      </div>
+      <div class="item" data-tool="brush" title="Brush">
+        <img src="assets/brush.png" alt="brush" />
+      </div>
+      <div class="item active" data-tool="paint-bucket" title="Paint">
+        <img src="assets/paint-bucket.png" alt="paint-bucket" />
+      </div>
+      <div class="item" data-tool="eraser" title="Eraser">
+        <img src="assets/eraser.png" alt="eraser" />
+      </div>
+    </div>
+    <div class="group linewidths for-brush" style="display: none;">
+      <div class="item active" data-brush-width="4" title="4px">
+        <div class="linewidth" style="width: 4px; height: 4px"></div>
+      </div>
+      <div class="item" data-brush-width="6" title="2px">
+        <div class="linewidth" style="width: 6px; height: 6px"></div>
+      </div>
+      <div class="item" data-brush-width="8" title="8px">
+        <div class="linewidth" style="width: 8px; height: 8px"></div>
+      </div>
+      <div class="item" data-brush-width="10" title="10px">
+        <div class="linewidth" style="width: 10px; height: 10px"></div>
+      </div>
+      <div class="item" data-brush-width="12" title="12px">
+        <div class="linewidth" style="width: 12 px; height: 12px"></div>
+      </div>
+    </div>
+  </div>
+  <canvas id="canvas" width="640" height="360"></canvas>
+  <div class="toolbox right">
+    <div class="group swatches">
+      <div class="item" data-color="#ffffff">
+        <div class="swatch" style="background-color: #ffffff;"></div>
+      </div>
+      <div class="item active" data-color="#000000">
+        <div class="swatch" style="background-color: #000000;"></div>
+      </div>
+      <hr />
+      <!-- Pallete 132 -->
+      <div class="item" data-color="#3C284B">
+        <div class="swatch" style="background-color: #3C284B;"></div>
+      </div>
+      <div class="item" data-color="#8F89B7">
+        <div class="swatch" style="background-color: #8F89B7;"></div>
+      </div>
+      <div class="item" data-color="#C7D7FB">
+        <div class="swatch" style="background-color: #C7D7FB;"></div>
+      </div>
+      <div class="item" data-color="#F1B0DA">
+        <div class="swatch" style="background-color: #F1B0DA;"></div>
+      </div>
+      <div class="item" data-color="#FEC4B6">
+        <div class="swatch" style="background-color: #FEC4B6;"></div>
+      </div>
+      <hr />
+      <!-- Pallete 149 -->
+      <div class="item" data-color="#1C2743">
+        <div class="swatch" style="background-color: #1C2743;"></div>
+      </div>
+      <div class="item" data-color="#213862">
+        <div class="swatch" style="background-color: #213862;"></div>
+      </div>
+      <div class="item" data-color="#B46382">
+        <div class="swatch" style="background-color: #B46382;"></div>
+      </div>
+      <div class="item" data-color="#FD9564">
+        <div class="swatch" style="background-color: #FD9564;"></div>
+      </div>
+      <div class="item" data-color="#E3463F">
+        <div class="swatch" style="background-color: #E3463F;"></div>
+      </div>
+      <hr />
+      <!-- Pallete 149 -->
+      <div class="item" data-color="#A35678">
+        <div class="swatch" style="background-color: #A35678;"></div>
+      </div>
+      <div class="item" data-color="#E495B2">
+        <div class="swatch" style="background-color: #E495B2;"></div>
+      </div>
+      <div class="item" data-color="#F8C3D5">
+        <div class="swatch" style="background-color: #F8C3D5;"></div>
+      </div>
+      <div class="item" data-color="#FFEBF2">
+        <div class="swatch" style="background-color: #FFEBF2;"></div>
+      </div>
+      <div class="item" data-color="#B6BBB6">
+        <div class="swatch" style="background-color: #B6BBB6;"></div>
+      </div>
+      <hr />
+      <!-- Pallete 145 -->
+      <div class="item" data-color="#9AD3CA">
+        <div class="swatch" style="background-color: #9AD3CA;"></div>
+      </div>
+      <div class="item" data-color="#D7EAE4">
+        <div class="swatch" style="background-color: #D7EAE4;"></div>
+      </div>
+      <div class="item" data-color="#929FD1">
+        <div class="swatch" style="background-color: #929FD1;"></div>
+      </div>
+      <div class="item" data-color="#C3AAD1">
+        <div class="swatch" style="background-color: #C3AAD1;"></div>
+      </div>
+      <div class="item" data-color="#E7C7D7">
+        <div class="swatch" style="background-color: #E7C7D7;"></div>
+      </div>
+      <hr />
+      <!-- Pallete 145 -->
+      <div class="item" data-color="#BD637E">
+        <div class="swatch" style="background-color: #BD637E;"></div>
+      </div>
+      <div class="item" data-color="#E2B4B7">
+        <div class="swatch" style="background-color: #E2B4B7;"></div>
+      </div>
+      <div class="item" data-color="#FEF8EC">
+        <div class="swatch" style="background-color: #FEF8EC;"></div>
+      </div>
+      <div class="item" data-color="#A0C9C3">
+        <div class="swatch" style="background-color: #A0C9C3;"></div>
+      </div>
+      <div class="item" data-color="#657D81">
+        <div class="swatch" style="background-color: #657D81;"></div>
+      </div>
+      <hr />
+    </div>
+  </div>
+  <div class="no-mobile">
+    <p>Please open it in tablet/desktop devices to continue using this coloring app</p>
+  </div>
+</body>
+
+</html>
